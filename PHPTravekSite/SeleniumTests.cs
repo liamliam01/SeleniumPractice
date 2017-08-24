@@ -49,9 +49,19 @@ namespace PHPTravekSite
                 driver.Navigate().GoToUrl("http://www.phptravels.net");
 
                
-                IWebElement myAccount = driver.FindElement(By.ClassName("dropdown-toggle"));
+                IWebElement myAccount = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/ul/li[2]"));
+
+                Thread.Sleep(1000);
 
                 myAccount.Click();
+                IWebElement login = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/ul/li[2]/ul/li[1]/a"));
+
+                Thread.Sleep(10000);
+
+                login.Click();
+
+                
+
 
             }
         }
