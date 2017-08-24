@@ -9,13 +9,14 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Threading;
+using System.IO;
 
 namespace PHPTravekSite
 {
 
     namespace SeleniumTests
     {
-        // [Parallelizable]
+         [Parallelizable]
         [TestFixture(typeof(InternetExplorerDriver))]
         [TestFixture(typeof(ChromeDriver))]
         public class TestWithMultipleBrowsers<TWebDriver> where TWebDriver : IWebDriver, new()
@@ -35,7 +36,7 @@ namespace PHPTravekSite
                 IWebElement query = driver.FindElement(By.Name("q"));
                 query.SendKeys("Bread" + Keys.Enter);
 
-                Assert.AreEqual("bread - Google Search", driver.Title);
+                IWebElement google = driver.FindElement(By.Id("logo"));
 
                 driver.Quit();
             }
