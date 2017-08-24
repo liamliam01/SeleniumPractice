@@ -22,6 +22,7 @@ namespace PHPTravekSite
         public class TestWithMultipleBrowsers<TWebDriver> where TWebDriver : IWebDriver, new()
         {
             public IWebDriver driver;
+            public IWebElement element;
 
             [SetUp]
             public void CreateDriver()
@@ -30,7 +31,7 @@ namespace PHPTravekSite
             }
 
             [Test]
-            public void GoogleTest()
+            public void BrowserSmokeTest()
             {
                 driver.Navigate().GoToUrl("http://www.google.com/");
                 IWebElement query = driver.FindElement(By.Name("q"));
@@ -39,6 +40,19 @@ namespace PHPTravekSite
                 IWebElement google = driver.FindElement(By.Id("logo"));
 
                 driver.Quit();
+            }
+
+            [Test]
+
+            public void LaunchSite()
+            {
+                driver.Navigate().GoToUrl("http://www.phptravels.net");
+
+               
+                IWebElement myAccount = driver.FindElement(By.ClassName("dropdown-toggle"));
+
+                myAccount.Click();
+
             }
         }
     }
