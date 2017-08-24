@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PHPTravekSite
 {
-    public class Class1
+    class TestBase
     {
     }
 }
