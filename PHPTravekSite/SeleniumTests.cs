@@ -35,6 +35,7 @@ namespace PHPTravekSite
                 IWebElement query = driver.FindElement(By.Name("q"));
                 query.SendKeys("Bread" + Keys.Enter);
 
+                Assert.AreEqual("bread - Google Search", driver.Title);
 
                 driver.Quit();
             }
