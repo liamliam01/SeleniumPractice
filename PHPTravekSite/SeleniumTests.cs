@@ -10,19 +10,24 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Threading;
 using System.IO;
+using OpenQA.Selenium.Firefox;
 
 namespace PHPTravekSite
 {
 
     namespace SeleniumTests
     {
-         [Parallelizable]
+        [Parallelizable]
         [TestFixture(typeof(InternetExplorerDriver))]
         [TestFixture(typeof(ChromeDriver))]
+        [TestFixture(typeof(FirefoxDriver))]
         public class TestWithMultipleBrowsers<TWebDriver> where TWebDriver : IWebDriver, new()
         {
             public IWebDriver driver;
             public IWebElement element;
+           
+
+    
 
             [SetUp]
             public void CreateDriver()
@@ -46,23 +51,37 @@ namespace PHPTravekSite
 
             public void LaunchSite()
             {
-                               
-                driver.Navigate().GoToUrl("http://www.phptravels.net");
 
-               
+                
+                  
+                 //public void WaitForElementLoad(By by, int timeoutInSeconds)
+                 //{
+                 //    if (timeoutInSeconds > 0)
+                 //    {
+                 //        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                 //        wait.Until(ExpectedConditions.ElementIsVisible(by));
+                 //    }
+                 //}
+                 driver.Navigate().GoToUrl("http://www.phptravels.net");
+
+
                 IWebElement myAccount = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/ul/li[2]"));
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
                 myAccount.Click();
 
                 IWebElement login = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[2]/ul/li[2]/ul/li[1]/a"));
-                Thread.Sleep(10000);
+                Thread.Sleep(1000);
                 login.Click();
 
-                IWebElement email = driver.FindElement(By.XPath("//*[@id=\"loginfrm\"]/div[4]/div/div[1]/input"));
+                Thread.Sleep(1000);
+               
+                IWebElement email = driver.FindElement(By.Name("username"));
+
+
                 email.Click();
                 email.SendKeys("user@phptravels.com");
 
-                IWebElement password = driver.FindElement(By.XPath("//*[@id=\"loginfrm\"]/div[4]/div/div[2]/input"));
+                IWebElement password = driver.FindElement(By.Name("password"));
                 password.SendKeys("demouser");
 
                 IWebElement btnLogin = driver.FindElement(By.XPath("//*[@id=\"loginfrm\"]/div[4]/button"));
@@ -81,6 +100,8 @@ namespace PHPTravekSite
             }
         }
     }
+
+
 
 
 
